@@ -8,7 +8,7 @@ class App < Sinatra::Base
 
   post '/reverse' do
     original_string = params["string"]
-    @reversed_string = original_string.reverse
+    @reversed_string = original_string.capitalize
     erb :reversed
   end
 
@@ -16,4 +16,18 @@ class App < Sinatra::Base
     # Write your code here!
     @friends = ['Emily Wilding Davison', 'Harriet Tubman', 'Joan of Arc', 'Malala Yousafzai', 'Sojourner Truth']
   end
+
+  get '/list_my_friends' do 
+    puts params
+    erb :list_my_friends
+  end 
+
+  post '/list_my_friends' do 
+    binding.pry
+    params["string"].map do |friend|  
+      friend
+    end 
+    
+    erb :friends_list
+  end 
 end
